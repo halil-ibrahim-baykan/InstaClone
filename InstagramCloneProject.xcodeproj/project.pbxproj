@@ -13,6 +13,7 @@
 		663C7EE824C2B11E005DD3C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663C7EE624C2B11E005DD3C5 /* Main.storyboard */; };
 		663C7EEA24C2B122005DD3C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 663C7EE924C2B122005DD3C5 /* Assets.xcassets */; };
 		663C7EED24C2B122005DD3C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663C7EEB24C2B122005DD3C5 /* LaunchScreen.storyboard */; };
+		663C7EF624C35C98005DD3C5 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663C7EF524C35C98005DD3C5 /* Extension+UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		663C7EE924C2B122005DD3C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		663C7EEC24C2B122005DD3C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		663C7EEE24C2B122005DD3C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		663C7EF524C35C98005DD3C5 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		663C7EDF24C2B11E005DD3C5 /* InstagramCloneProject */ = {
 			isa = PBXGroup;
 			children = (
+				663C7EF424C35C63005DD3C5 /* Utilities */,
 				663C7EE024C2B11E005DD3C5 /* AppDelegate.swift */,
 				663C7EE224C2B11E005DD3C5 /* SceneDelegate.swift */,
 				663C7EE424C2B11E005DD3C5 /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				663C7EEE24C2B122005DD3C5 /* Info.plist */,
 			);
 			path = InstagramCloneProject;
+			sourceTree = "<group>";
+		};
+		663C7EF424C35C63005DD3C5 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				663C7EF524C35C98005DD3C5 /* Extension+UIColor.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 				663C7EE524C2B11E005DD3C5 /* ViewController.swift in Sources */,
 				663C7EE124C2B11E005DD3C5 /* AppDelegate.swift in Sources */,
 				663C7EE324C2B11E005DD3C5 /* SceneDelegate.swift in Sources */,
+				663C7EF624C35C98005DD3C5 /* Extension+UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
