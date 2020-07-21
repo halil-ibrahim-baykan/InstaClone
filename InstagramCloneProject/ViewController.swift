@@ -8,17 +8,24 @@
 
 import UIKit
 import Firebase
+import JGProgressHUD
 
 class ViewController: UIViewController {
     
     let btnAddImage: UIButton = {
         let btn = UIButton(type: UIButton.ButtonType.system)
         btn.setImage(#imageLiteral(resourceName: "addImage"), for: UIControl.State.normal)
-        
         //        btn.backgroundColor = .yellow
         btn.translatesAutoresizingMaskIntoConstraints = false // with this button accepts the constraints for autolayout
+        btn.addTarget(self, action: #selector(btnAddImageClicked), for: UIControl.Event.touchUpInside)
         return btn
     }()
+    
+    @objc fileprivate func btnAddImageClicked(){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
+    }
     
     let txtEmail: UITextField = {
         let txt = UITextField()
@@ -34,8 +41,8 @@ class ViewController: UIViewController {
     @objc fileprivate func valueChanging(){
         let checkFormCharacter =
             (txtEmail.text?.count ?? 0) > 0 &&
-            (txtUserName.text?.count ?? 0) > 0 &&
-            (txtPassword.text?.count ?? 0) > 0
+                (txtUserName.text?.count ?? 0) > 0 &&
+                (txtPassword.text?.count ?? 0) > 0
         
         if checkFormCharacter {
             btnSignup.backgroundColor = UIColor.ConvertRgb(red: 20, green: 155, blue: 205)
@@ -92,18 +99,69 @@ class ViewController: UIViewController {
         //        let email = "test@gmail.com"
         //        let userName = "user"
         //        let password =  "123456"
+        let hud = JGProgressHUD(style: JGProgressHUDStyle.light)
+        hud.textLabel.text = "Signup proccessing.."
+        hud.show(in: self.view, animated: true)
+        
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("error \(error.localizedDescription)")
+                hud.dismiss(animated: true)
                 return
             }
+            guard let signedupUserId = result?.user.uid else {return}
             
+            let imageName = UUID().uuidString // it's gonna give me a random string value
+            
+            let ref = Storage.storage().reference(withPath: "/ProfileImages/\(imageName)")
+            // we need to make the image's data
+            
+            let imageData = self.btnAddImage.imageView?.image?.jpegData(compressionQuality: 0.8) ?? Data() // if there is no image send us to empty data
+            ref.putData(imageData, metadata: nil) { (_, error) in
+                if let error = error {
+                    print("Error---\(error.localizedDescription)")
+                    return
+                }
+                print("image uploaded successfully..")
+                
+                ref.downloadURL { (url, error) in
+                    if let error = error{
+                        print("Error****\(error)")
+                        return
+                    }
+                    print("the url of the image\(url?.absoluteString)")
+                    
+                    let dataToAdd : [String:Any] = ["UserName": userName,"UserID": signedupUserId, "ProfileImageUrl": url?.absoluteString]
+                    
+                    Firestore.firestore().collection("Users").document(signedupUserId).setData(dataToAdd) { (error) in
+                        if let error = error{
+                            print("User data didn't save to Firestore \(error.localizedDescription)")
+                        }
+                        print("User data saved successfully")
+                        hud.dismiss(animated: true)
+                        self.fixImageView()
+                    }
+                }
+            }
             print("user account created. id: \(result?.user.uid)")
-            self.txtEmail.text = ""
-            self.txtPassword.text = ""
-            self.txtUserName.text = ""
+            
         }
+        
+    }
+    
+    fileprivate func fixImageView(){
+//        self.btnAddImage.imageView?.image = #imageLiteral(resourceName: "addImage")
+        self.btnAddImage.setImage(#imageLiteral(resourceName: "addImage"), for: .normal)
+        self.btnAddImage.layer.borderColor = UIColor.clear.cgColor
+        self.btnAddImage.layer.borderWidth = 0
+        self.txtEmail.text = ""
+        self.txtPassword.text = ""
+        self.txtUserName.text = ""
+        let hudSuccess = JGProgressHUD(style: .light)
+        hudSuccess.textLabel.text = "Signup successful.."
+        hudSuccess.show(in: self.view, animated: true)
+        hudSuccess.dismiss(afterDelay: 2)
         
     }
     
@@ -203,5 +261,26 @@ extension UIView {
         }
         
     }
+}
+
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    //didCancel
+    
+    func didChangeValue<Value>(for keyPath: KeyPath<ViewController, Value>) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let chosenImage = info[.originalImage] as? UIImage
+        
+        self.btnAddImage.setImage(chosenImage?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
+        btnAddImage.layer.cornerRadius = btnAddImage.frame.width / 2
+        btnAddImage.layer.masksToBounds = true
+        btnAddImage.layer.borderColor = UIColor.darkGray.cgColor
+        btnAddImage.layer.borderWidth = 3
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
