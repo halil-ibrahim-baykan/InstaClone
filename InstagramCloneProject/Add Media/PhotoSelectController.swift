@@ -100,15 +100,32 @@ let headerId = "headerId"
     fileprivate func addButtons(){
         navigationController?.navigationBar.tintColor = .black
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonClicked))
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextButtonClicked))
     }
     @objc func cancelButtonClicked(){
         dismiss(animated: true, completion: nil) // when you press it, it dismiss current view immediately
     }
+    @objc func nextButtonClicked(){
+        print("abc")
+    }
+
 
 }
 
 extension UINavigationController{
     open override var childForStatusBarHidden: UIViewController?{
         return self.topViewController
+    }
+}
+extension PhotoSelectController: UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (view.frame.width - 3) / 4
+        return CGSize(width: width, height: width)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
     }
 }
