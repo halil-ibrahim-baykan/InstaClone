@@ -116,7 +116,7 @@ class SignUpController: UIViewController {
             
             let imageData = self.btnAddImage.imageView?.image?.jpegData(compressionQuality: 0.8) ?? Data() // if there is no image send us to empty data
             
-            ref.putData(imageData, metadata: nil) { (_, error) in // probably we put imegadata to ref point and we get it in downloadU
+            ref.putData(imageData, metadata: nil) { (_, error) in //  we put imegadata to ref point and we get it in downloadUrl
                 if let error = error {
                     print("Error---\(error.localizedDescription)") 
                     return
@@ -138,7 +138,7 @@ class SignUpController: UIViewController {
                         }
                         print("User data saved successfully")
                         hud.dismiss(animated: true)
-                        self.fixImageView()
+//                        self.fixImageView()
                         let keyWindow = UIApplication.shared.connectedScenes
                             .filter({$0.activationState == .foregroundActive})
                             .map({$0 as? UIWindowScene})
@@ -146,10 +146,12 @@ class SignUpController: UIViewController {
                             .first?.windows
                             .filter({$0.isKeyWindow}).first
                         
-                        guard let mainTabBarController = keyWindow?.rootViewController as? MainTabBarController else {return} // as a default => it's UIViewController. Also you can go SceneDelegate and can see there that ' self.window?.rootViewController = MainTabBarController() ' we did it before.
-                        
-                        mainTabBarController.showProfileView() // with that way we can reach the func inside of MainTabBarController..
-                        self.dismiss(animated: true, completion: nil) // with this, this view gonna close id it does not we can't see the other views
+                        // as a default => it's UIViewController. Also you can go SceneDelegate and can see there that ' self.window?.rootViewController = MainTabBarController() ' we did it before.
+                        guard let mainTabBarController = keyWindow?.rootViewController as? MainTabBarController else {return}
+                        // with that way we can reach the func inside of MainTabBarController..
+                        mainTabBarController.showProfileView()
+                        // with this, this view gonna close itself, if it doesn't we can't see the other views
+                        self.dismiss(animated: true, completion: nil)
                         
                     }
                 }
@@ -161,21 +163,21 @@ class SignUpController: UIViewController {
         }
         
     }
-    
-    fileprivate func fixImageView(){ // actually we don't need this one. becuse this one just was a step in the begining
-        //        self.btnAddImage.imageView?.image = #imageLiteral(resourceName: "addImage")
-        self.btnAddImage.setImage(#imageLiteral(resourceName: "addImage"), for: .normal)
-        self.btnAddImage.layer.borderColor = UIColor.clear.cgColor
-        self.btnAddImage.layer.borderWidth = 0
-        self.txtEmail.text = ""
-        self.txtPassword.text = ""
-        self.txtUserName.text = ""
-        let hudSuccess = JGProgressHUD(style: .light)
-        hudSuccess.textLabel.text = "Signup successful.."
-        hudSuccess.show(in: self.view, animated: true)
-        hudSuccess.dismiss(afterDelay: 2)
-        
-    }
+    // actually we don't need this one. becuse this one just was a step in the begining
+//    fileprivate func fixImageView(){
+//        //        self.btnAddImage.imageView?.image = #imageLiteral(resourceName: "addImage")
+//        self.btnAddImage.setImage(#imageLiteral(resourceName: "addImage"), for: .normal)
+//        self.btnAddImage.layer.borderColor = UIColor.clear.cgColor
+//        self.btnAddImage.layer.borderWidth = 0
+//        self.txtEmail.text = ""
+//        self.txtPassword.text = ""
+//        self.txtUserName.text = ""
+//        let hudSuccess = JGProgressHUD(style: .light)
+//        hudSuccess.textLabel.text = "Signup successful.."
+//        hudSuccess.show(in: self.view, animated: true)
+//        hudSuccess.dismiss(afterDelay: 2)
+//
+//    }
     
     let btnGoSignIn: UIButton = {
         let btn = UIButton(type: .system)

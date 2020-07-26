@@ -10,12 +10,13 @@ import UIKit
 
 class PhotoSelectCell: UICollectionViewCell{
     let imgPhoto: UIImageView = {
-       let img = UIImageView()
+        let img = UIImageView()
         img.backgroundColor = .green
         img.contentMode = .scaleAspectFill
         img.clipsToBounds = true
         return img
     }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .red

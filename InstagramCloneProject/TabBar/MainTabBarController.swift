@@ -48,7 +48,6 @@ class MainTabBarController: UITabBarController{
         let addNavController = createNavController(image: UIImage(systemName: "plus.app")!, selectedImage: UIImage(systemName: "plus.app.fill")!)
         let likeNavController = createNavController(image: UIImage(systemName: "heart")!, selectedImage: UIImage(systemName: "heart.fill")!)
         
-        
         let layout = UICollectionViewFlowLayout()
         let userProfileController = UserProfileController(collectionViewLayout: layout)
         let userNavController = UINavigationController(rootViewController: userProfileController  )
@@ -69,12 +68,10 @@ class MainTabBarController: UITabBarController{
     
     
     fileprivate func createNavController(image:UIImage, selectedImage:UIImage, rootViewController:UIViewController = UIViewController()) ->UINavigationController{
-        
         let rootController = rootViewController
         let navController = UINavigationController(rootViewController: rootController)
         navController.tabBarItem.image = image
         navController.tabBarItem.selectedImage =  selectedImage
-        
         return navController
     }
     
@@ -84,17 +81,11 @@ extension MainTabBarController: UITabBarControllerDelegate{
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         guard let index = viewControllers?.firstIndex(of: viewController) else {return true}
         if index == 2 {
-            
             let layout = UICollectionViewFlowLayout()
-            
             let photoSelectController = PhotoSelectController(collectionViewLayout: layout)
-            
             let navController = UINavigationController(rootViewController: photoSelectController)
             navController.modalPresentationStyle = .fullScreen
             present(navController, animated: true, completion: nil)
-            
-            
-            
             return false
         }
         return true

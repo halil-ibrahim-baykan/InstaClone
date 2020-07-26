@@ -75,9 +75,9 @@
 			children = (
 				66461CB224C7CBE900D06384 /* GoogleService-Info.plist */,
 				663C7EDF24C2B11E005DD3C5 /* InstagramCloneProject */,
-				663C7EDE24C2B11E005DD3C5 /* Products */,
-				8287448AAE3E278A1BB8AA78 /* Pods */,
 				491AF86D54BE97561DA7B8A4 /* Frameworks */,
+				8287448AAE3E278A1BB8AA78 /* Pods */,
+				663C7EDE24C2B11E005DD3C5 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,18 +93,14 @@
 			isa = PBXGroup;
 			children = (
 				66909F0724C9B76900A9DDDA /* Add Media */,
-				663C7EF424C35C63005DD3C5 /* Utilities */,
 				665F41C324C5363F0057986D /* Model */,
-				66461CB824C80E1D00D06384 /* TabBar */,
 				66461CB424C805A100D06384 /* SignIn */,
 				66461CB724C80DDB00D06384 /* SignUp */,
+				66773C7924CBFC1000CCFF5C /* Sources */,
+				66773C7824CBFB7F00CCFF5C /* Supports */,
+				66461CB824C80E1D00D06384 /* TabBar */,
 				66F4432A24C51DB200F86708 /* UserProfile */,
-				663C7EE024C2B11E005DD3C5 /* AppDelegate.swift */,
-				663C7EE224C2B11E005DD3C5 /* SceneDelegate.swift */,
-				663C7EE624C2B11E005DD3C5 /* Main.storyboard */,
-				663C7EE924C2B122005DD3C5 /* Assets.xcassets */,
-				663C7EEB24C2B122005DD3C5 /* LaunchScreen.storyboard */,
-				663C7EEE24C2B122005DD3C5 /* Info.plist */,
+				663C7EF424C35C63005DD3C5 /* Utilities */,
 			);
 			path = InstagramCloneProject;
 			sourceTree = "<group>";
@@ -149,12 +145,32 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		66773C7824CBFB7F00CCFF5C /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				663C7EE024C2B11E005DD3C5 /* AppDelegate.swift */,
+				663C7EE224C2B11E005DD3C5 /* SceneDelegate.swift */,
+				663C7EEE24C2B122005DD3C5 /* Info.plist */,
+			);
+			path = Supports;
+			sourceTree = "<group>";
+		};
+		66773C7924CBFC1000CCFF5C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				663C7EE624C2B11E005DD3C5 /* Main.storyboard */,
+				663C7EE924C2B122005DD3C5 /* Assets.xcassets */,
+				663C7EEB24C2B122005DD3C5 /* LaunchScreen.storyboard */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		66909F0724C9B76900A9DDDA /* Add Media */ = {
 			isa = PBXGroup;
 			children = (
-				66909F0824C9B7C300A9DDDA /* PhotoSelectController.swift */,
-				660516F224CAE7EB004D36A0 /* PhotoSelectCell.swift */,
 				660516F424CAEFFF004D36A0 /* PhotoSelectHeader.swift */,
+				660516F224CAE7EB004D36A0 /* PhotoSelectCell.swift */,
+				66909F0824C9B7C300A9DDDA /* PhotoSelectController.swift */,
 			);
 			path = "Add Media";
 			sourceTree = "<group>";
@@ -453,7 +469,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NGS23TV8QR;
 				GCC_NO_COMMON_BLOCKS = NO;
-				INFOPLIST_FILE = InstagramCloneProject/Info.plist;
+				INFOPLIST_FILE = InstagramCloneProject/Supports/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -475,7 +491,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NGS23TV8QR;
 				GCC_NO_COMMON_BLOCKS = NO;
-				INFOPLIST_FILE = InstagramCloneProject/Info.plist;
+				INFOPLIST_FILE = InstagramCloneProject/Supports/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

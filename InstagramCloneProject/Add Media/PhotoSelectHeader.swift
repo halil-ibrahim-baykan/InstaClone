@@ -14,7 +14,6 @@ class PhotoSelectHeader : UICollectionViewCell{
         img.contentMode = .scaleAspectFill
         img.clipsToBounds = true
         img.backgroundColor = .purple
-        
         return img
     }()
     

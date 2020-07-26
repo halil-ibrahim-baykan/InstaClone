@@ -12,9 +12,17 @@ import Firebase
 import SDWebImage
 
 class UserProfileHeader: UICollectionViewCell { // we should create a header for a CollectionView from UICollectionViewCell
+    var currentUser : User?{ // when user come to currentUser which is inside of UserProfileController we said that there header.currentUser = currentUser
+        didSet{
+            guard let url = URL(string: currentUser?.profileImageUrl ?? "" ) else { return }
+            profileImage.sd_setImage(with: url, completed: nil)
+            lblUserName.text = currentUser?.userName
+        }
+    }
+    
     let profileImage: UIImageView = {
         let img = UIImageView()
-//        img.backgroundColor = .yellow
+        //        img.backgroundColor = .yellow
         return img
     }()
     
@@ -43,13 +51,7 @@ class UserProfileHeader: UICollectionViewCell { // we should create a header for
         return lbl
     }()
     
-    var currentUser : User?{ // when user come to currentUser which is inside of UserProfileController we said that there header.currentUser = currentUser
-        didSet{
-            guard let url = URL(string: currentUser?.profileImageUrl ?? "" ) else { return }
-            profileImage.sd_setImage(with: url, completed: nil)
-            lblUserName.text = currentUser?.userName
-        }
-    }
+    
     
     let lblSharing : UILabel = {
         let lbl = UILabel()
@@ -134,7 +136,7 @@ class UserProfileHeader: UICollectionViewCell { // we should create a header for
         topSeparatrixView.backgroundColor = .lightGray
         let bottomSeparatrixView = UIView()
         bottomSeparatrixView.backgroundColor = .lightGray
-    
+        
         let stackView = UIStackView(arrangedSubviews: [btnGrid,btnList,btnBookmark])
         addSubview(stackView)
         addSubview(topSeparatrixView)
@@ -171,18 +173,18 @@ class UserProfileHeader: UICollectionViewCell { // we should create a header for
     //            guard let url = URL(string: userProfileImageUrl) else { return}
     //
     //            // show image on view Manually
-    ////            URLSession.shared.dataTask(with: url) { (data, response, error) in
-    ////                if let error = error{
-    ////                    print("cant download image\(error)")
-    ////                }
-    ////                print(data)
-    ////                guard let data = data else {return}
-    ////                let image = UIImage(data: data)
-    ////
-    ////                DispatchQueue.main.async {
-    ////                    self.profileImage.image = image
-    ////                }
-    ////            }.resume()
+    //            URLSession.shared.dataTask(with: url) { (data, response, error) in
+    //                if let error = error{
+    //                    print("cant download image\(error)")
+    //                }
+//                    print(data)
+    //                guard let data = data else {return}
+    //                let image = UIImage(data: data)
+    //
+    //                DispatchQueue.main.async {
+    //                    self.profileImage.image = image
+    //                }
+    //            }.resume()
     //            // with a library
     //
     //            self.profileImage.sd_setImage(with: url, completed: nil)

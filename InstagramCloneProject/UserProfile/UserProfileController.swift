@@ -25,7 +25,8 @@ class UserProfileController: UICollectionViewController {
         
         getUser()
         
-        collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerID") // we created header and registered to collectionview. because we created it manually. collectionView daosn't have header footer.
+        // we created header and registered to collectionview. because we created it manually. collectionView doesn't have header footer.
+        collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerID")
         
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: sharedCellId) // also we registered cell
         
@@ -59,34 +60,32 @@ class UserProfileController: UICollectionViewController {
         alert.addAction(actionCancel)
         
     }
-    
+    // it's about spacing between collectionViewItems. => horizontally spacing
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 2
     }
-    
+     // it's about spacing between collectionViewItems.=> vartically spacing
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width-5) / 3
+        let width = (view.frame.width - 5) / 3
         return CGSize(width: width, height: width)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 20
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sharedCellId, for: indexPath)
         cell.backgroundColor = .blue
-        
-        
         return cell
     }
     
     // we create header for supplement to this class an
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        //this line is similar with cell logic this is just dequeue..SupplementaryView
+        //this line is similar with the cell-logic, difference is just 'dequeue..SupplementaryView'
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerID", for: indexPath) as! UserProfileHeader
         header.currentUser = currentUser // send currentUser to UserProfileHeader Class
 //        header.backgroundColor = .green
@@ -102,10 +101,13 @@ class UserProfileController: UICollectionViewController {
                 print("Can't get user data \(error.localizedDescription)")
             }
             
-            guard let userData = snapshot?.data() else{return} // checking there is data in that snapshot..
+            // checking there is data in that snapshot..
+            guard let userData = snapshot?.data() else {return}
 //            let userName = userData["UserName"] as? String
-            self.currentUser = User(userData: userData) // we get the currentUser from database here.. we parsing it to sending User model.
-            // header field reload and the really point here that we can do some adjusments inside header..
+            
+             // we get the currentUser from database here.. we parsing it to sending User model.
+            self.currentUser = User(userData: userData)
+            // header field reload and the really important point here that we can do some adjusments inside header..
             
             //** now I understand that we assign self.currentUser = User(userData: userData) we should reload because we want to send it to the cell and it writin in the method above but first viewDidLoad it was emty after reloading the view, it's gonna be full and it goes to headerCell and header can show our data  with that way.
             
