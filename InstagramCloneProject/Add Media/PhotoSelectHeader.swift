@@ -13,7 +13,7 @@ class PhotoSelectHeader : UICollectionViewCell{
        let img = UIImageView()
         img.contentMode = .scaleAspectFill
         img.clipsToBounds = true
-        img.backgroundColor = .purple
+//        img.backgroundColor = .purple
         return img
     }()
     
