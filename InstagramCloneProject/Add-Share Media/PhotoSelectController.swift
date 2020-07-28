@@ -20,6 +20,8 @@ class PhotoSelectController: UICollectionViewController {
     
     var assests  = [PHAsset]()
     
+    var header : PhotoSelectHeader?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,13 +43,16 @@ class PhotoSelectController: UICollectionViewController {
         dismiss(animated: true, completion: nil)
     }
     @objc func nextButtonClicked(){
-        print("abc")
+        let photoShareController = PhotoShareController()
+        navigationController?.pushViewController(photoShareController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath)
         selectedPhoto = photosArr[indexPath.row]
         collectionView.reloadData()
+        let indexTop = IndexPath(item:0, section:0)
+        collectionView.scrollToItem(at: indexTop, at: .bottom, animated: true)
     }
     
     fileprivate func fetchPhotosOptions()->PHFetchOptions{
@@ -100,9 +105,14 @@ class PhotoSelectController: UICollectionViewController {
     
     }
     
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectHeader
 //        header.imgHeader.image = selectedPhoto
+        
+        self.header = header
+        header.imgHeader.image = selectedPhoto
+        
         if let selectedPhoto = selectedPhoto{
             if let index = self.photosArr.firstIndex(of: selectedPhoto){
                 let selectedAsset = self.assests[index]

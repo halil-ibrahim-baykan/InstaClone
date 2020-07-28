@@ -20,6 +20,7 @@
 		66461CB324C7CBE900D06384 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66461CB224C7CBE900D06384 /* GoogleService-Info.plist */; };
 		66461CB624C805C900D06384 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66461CB524C805C900D06384 /* SignInController.swift */; };
 		665F41C524C536580057986D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665F41C424C536580057986D /* User.swift */; };
+		666D7D7C24CD59D800A0ED4C /* PhotoShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666D7D7B24CD59D800A0ED4C /* PhotoShareController.swift */; };
 		66909F0924C9B7C300A9DDDA /* PhotoSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66909F0824C9B7C300A9DDDA /* PhotoSelectController.swift */; };
 		66F4432724C4FD3A00F86708 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F4432624C4FD3A00F86708 /* MainTabBarController.swift */; };
 		66F4432924C4FEA100F86708 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F4432824C4FEA100F86708 /* UserProfileController.swift */; };
@@ -41,6 +42,7 @@
 		66461CB224C7CBE900D06384 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66461CB524C805C900D06384 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		665F41C424C536580057986D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		666D7D7B24CD59D800A0ED4C /* PhotoShareController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoShareController.swift; sourceTree = "<group>"; };
 		66909F0824C9B7C300A9DDDA /* PhotoSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectController.swift; sourceTree = "<group>"; };
 		66F4432624C4FD3A00F86708 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		66F4432824C4FEA100F86708 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 		663C7EDF24C2B11E005DD3C5 /* InstagramCloneProject */ = {
 			isa = PBXGroup;
 			children = (
-				66909F0724C9B76900A9DDDA /* Add Media */,
+				66909F0724C9B76900A9DDDA /* Add-Share Media */,
 				665F41C324C5363F0057986D /* Model */,
 				66461CB424C805A100D06384 /* SignIn */,
 				66461CB724C80DDB00D06384 /* SignUp */,
@@ -165,14 +167,15 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		66909F0724C9B76900A9DDDA /* Add Media */ = {
+		66909F0724C9B76900A9DDDA /* Add-Share Media */ = {
 			isa = PBXGroup;
 			children = (
+				666D7D7B24CD59D800A0ED4C /* PhotoShareController.swift */,
 				660516F424CAEFFF004D36A0 /* PhotoSelectHeader.swift */,
 				660516F224CAE7EB004D36A0 /* PhotoSelectCell.swift */,
 				66909F0824C9B7C300A9DDDA /* PhotoSelectController.swift */,
 			);
-			path = "Add Media";
+			path = "Add-Share Media";
 			sourceTree = "<group>";
 		};
 		66F4432A24C51DB200F86708 /* UserProfile */ = {
@@ -317,6 +320,7 @@
 				66461CB624C805C900D06384 /* SignInController.swift in Sources */,
 				665F41C524C536580057986D /* User.swift in Sources */,
 				66F4432724C4FD3A00F86708 /* MainTabBarController.swift in Sources */,
+				666D7D7C24CD59D800A0ED4C /* PhotoShareController.swift in Sources */,
 				663C7EE324C2B11E005DD3C5 /* SceneDelegate.swift in Sources */,
 				66909F0924C9B7C300A9DDDA /* PhotoSelectController.swift in Sources */,
 				660516F324CAE7EB004D36A0 /* PhotoSelectCell.swift in Sources */,
