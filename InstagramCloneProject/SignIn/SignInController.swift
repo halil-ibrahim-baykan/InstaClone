@@ -94,13 +94,8 @@ class SignInController: UIViewController{
             guard let mainTabBarController = keyWindow?.rootViewController as? MainTabBarController else {return} // as a default => it's UIViewController. Also you can go SceneDelegate and can see there that ' self.window?.rootViewController = MainTabBarController() ' we did it before.
             
             mainTabBarController.showProfileView() // with that way we can reach the func inside of MainTabBarController..
-            self.dismiss(animated: true, completion: nil) // with this, this view gonna close id it does not we can't see the other views
-            
-            
-            
-            
-            
-            
+            self.dismiss(animated: true, completion: nil) // with this, this view gonna close if it's not   we can't see the other views
+
             
         }
         

@@ -17,7 +17,7 @@ class MainTabBarController: UITabBarController{
      
         self.delegate = self // it's really important!!! for UITabBarControllerDelegate
         
-        if Auth.auth().currentUser == nil{
+        if Auth.auth().currentUser == nil {
             // there is no user signed in
             DispatchQueue.main.async {
                 let signInController = SignInController()
@@ -44,15 +44,20 @@ class MainTabBarController: UITabBarController{
 //        searchNavController.tabBarItem.selectedImage = UIImage(systemName: "magnifyingglass", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
         
         let mainNavController = createNavController(image: UIImage(systemName: "house")!, selectedImage: UIImage(systemName: "house.fill")!, rootViewController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout()))
+        
         let searchNavController = createNavController(image: UIImage(systemName: "magnifyingglass", withConfiguration: UIImage.SymbolConfiguration(weight: .light))!, selectedImage: UIImage(systemName: "magnifyingglass", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))!)
+        
         let addNavController = createNavController(image: UIImage(systemName: "plus.app")!, selectedImage: UIImage(systemName: "plus.app.fill")!)
+        
         let likeNavController = createNavController(image: UIImage(systemName: "heart")!, selectedImage: UIImage(systemName: "heart.fill")!)
         
-        let layout = UICollectionViewFlowLayout()
-        let userProfileController = UserProfileController(collectionViewLayout: layout)
-        let userNavController = UINavigationController(rootViewController: userProfileController  )
-        userNavController.tabBarItem.image = UIImage(systemName: "person")
-        userNavController.tabBarItem.selectedImage = UIImage(systemName: "person.fill")
+        let userNavController = createNavController(image: UIImage(systemName: "person")!, selectedImage: UIImage(systemName: "person.fill")!, rootViewController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout()))
+
+//        let layout = UICollectionViewFlowLayout()
+//        let userProfileController = UserProfileController(collectionViewLayout: layout)
+//        let userNavController = UINavigationController(rootViewController: userProfileController  )
+//        userNavController.tabBarItem.image = UIImage(systemName: "person")
+//        userNavController.tabBarItem.selectedImage = UIImage(systemName: "person.fill")
         tabBar.tintColor = .black
         //         viewControllers = [navController,UIViewController()]
         viewControllers = [mainNavController, searchNavController, addNavController, likeNavController, userNavController]
@@ -66,8 +71,7 @@ class MainTabBarController: UITabBarController{
         
     }
     
-    
-    fileprivate func createNavController(image:UIImage, selectedImage:UIImage, rootViewController:UIViewController = UIViewController()) ->UINavigationController{
+    fileprivate func createNavController(image:UIImage, selectedImage:UIImage, rootViewController: UIViewController = UIViewController()) ->UINavigationController{
         let rootController = rootViewController
         let navController = UINavigationController(rootViewController: rootController)
         navController.tabBarItem.image = image

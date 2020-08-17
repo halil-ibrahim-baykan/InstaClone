@@ -101,6 +101,7 @@ class SignUpController: UIViewController {
         hud.textLabel.text = "Signup proccessing.."
         hud.show(in: self.view, animated: true)
         
+    
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("error \(error.localizedDescription)")
@@ -109,28 +110,32 @@ class SignUpController: UIViewController {
             }
             guard let signedupUserId = result?.user.uid else {return} // that means there is a currentUser
             
-            let imageName = UUID().uuidString // it's gonna give me a random string value for imageName
-            
+            let imageName = UUID().uuidString
+            //create ref point to store the data
             let ref = Storage.storage().reference(withPath: "/ProfileImages/\(imageName)")
-            // we need to make the image's data
             
+            // convert jpegImage to data
             let imageData = self.btnAddImage.imageView?.image?.jpegData(compressionQuality: 0.8) ?? Data() // if there is no image send us to empty data
-            
-            ref.putData(imageData, metadata: nil) { (_, error) in //  we put imegadata to ref point and we get it in downloadUrl
+            //add imageData to ref point
+            ref.putData(imageData, metadata: nil) { (_, error) in
                 if let error = error {
                     print("Error---\(error.localizedDescription)") 
                     return
                 }
                 //                print("image uploaded successfully..")
                 
-                ref.downloadURL { (url, error) in //here is important and actually I didn't understand that where came from url??
+                // url comes from downloadUrl method automatically, save that url to the storage
+                ref.downloadURL { (url, error) in
                     if let error = error{
                         print("Error****\(error)")
                         return
                     }
                     //                    print("the url of the image\(url?.absoluteString)")
                     
-                    let dataToAdd : [String:Any] = ["UserName": userName,"UserID": signedupUserId, "ProfileImageUrl": url?.absoluteString as Any]
+                    let dataToAdd = [
+                        "UserName": userName,
+                        "UserID": signedupUserId,
+                        "ProfileImageUrl": url?.absoluteString ?? ""]
                     
                     Firestore.firestore().collection("Users").document(signedupUserId).setData(dataToAdd) { (error) in
                         if let error = error{
@@ -146,7 +151,7 @@ class SignUpController: UIViewController {
                             .first?.windows
                             .filter({$0.isKeyWindow}).first
                         
-                        // as a default => it's UIViewController. Also you can go SceneDelegate and can see there that ' self.window?.rootViewController = MainTabBarController() ' we did it before.
+                        // as a default => it's UIViewController. Also you can go SceneDelegate and can see there that 'self.window?.rootViewController = MainTabBarController()' =>what we wrote there before.
                         guard let mainTabBarController = keyWindow?.rootViewController as? MainTabBarController else {return}
                         // with that way we can reach the func inside of MainTabBarController..
                         mainTabBarController.showProfileView()
@@ -252,40 +257,6 @@ class SignUpController: UIViewController {
         //            stackView.heightAnchor.constraint(equalToConstant: 230)
         //        ])
         stackView.anchor(top: btnAddImage.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 20, paddingBottom: 0, paddingLeading: 45, paddingTrailing: -45, width: 0, height: 230)
-    }
-}
-
-extension UIView {
-    func anchor(top: NSLayoutYAxisAnchor?,
-                bottom:NSLayoutYAxisAnchor?,
-                leading:NSLayoutXAxisAnchor?,
-                trailing: NSLayoutXAxisAnchor?,
-                paddingTop: CGFloat,
-                paddingBottom: CGFloat,
-                paddingLeading:CGFloat,
-                paddingTrailing:CGFloat,
-                width:CGFloat,
-                height:CGFloat) {
-        translatesAutoresizingMaskIntoConstraints = false// this is improtant because without it our constraints don't show up in the view
-        if let top = top {
-            self.topAnchor.constraint(equalTo: top, constant: paddingTop).isActive = true
-        }
-        if let bottom  = bottom {
-            self.bottomAnchor.constraint(equalTo: bottom, constant: paddingBottom).isActive = true
-        }
-        if let leading = leading {
-            self.leadingAnchor.constraint(equalTo: leading, constant: paddingLeading).isActive = true
-        }
-        if let trailing = trailing{
-            self.trailingAnchor.constraint(equalTo: trailing, constant: paddingTrailing).isActive = true
-        }
-        if width != 0 {
-            self.widthAnchor.constraint(equalToConstant: width).isActive = true
-        }
-        if height != 0 {
-            self.heightAnchor.constraint(equalToConstant: height).isActive = true
-        }
-        
     }
 }
 

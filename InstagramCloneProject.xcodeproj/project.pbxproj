@@ -25,6 +25,7 @@
 		66F4432724C4FD3A00F86708 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F4432624C4FD3A00F86708 /* MainTabBarController.swift */; };
 		66F4432924C4FEA100F86708 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F4432824C4FEA100F86708 /* UserProfileController.swift */; };
 		66F4432C24C51DD200F86708 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F4432B24C51DD200F86708 /* UserProfileHeader.swift */; };
+		66FF13C024DA940F00048259 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FF13BF24DA940F00048259 /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		66F4432624C4FD3A00F86708 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		66F4432824C4FEA100F86708 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		66F4432B24C51DD200F86708 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		66FF13BF24DA940F00048259 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		9532624F50252210F80013CE /* Pods-InstagramCloneProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramCloneProject.release.xcconfig"; path = "Target Support Files/Pods-InstagramCloneProject/Pods-InstagramCloneProject.release.xcconfig"; sourceTree = "<group>"; };
 		A748AF23B5D66F5FEEF2D061 /* Pods-InstagramCloneProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramCloneProject.debug.xcconfig"; path = "Target Support Files/Pods-InstagramCloneProject/Pods-InstagramCloneProject.debug.xcconfig"; sourceTree = "<group>"; };
 		F5599CA84E4394F14BC3292C /* Pods_InstagramCloneProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramCloneProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +96,7 @@
 		663C7EDF24C2B11E005DD3C5 /* InstagramCloneProject */ = {
 			isa = PBXGroup;
 			children = (
+				66FF13BE24DA93F200048259 /* Constants */,
 				66909F0724C9B76900A9DDDA /* Add-Share Media */,
 				665F41C324C5363F0057986D /* Model */,
 				66461CB424C805A100D06384 /* SignIn */,
@@ -185,6 +188,14 @@
 				66F4432824C4FEA100F86708 /* UserProfileController.swift */,
 			);
 			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		66FF13BE24DA93F200048259 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				66FF13BF24DA940F00048259 /* Enums.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		8287448AAE3E278A1BB8AA78 /* Pods */ = {
@@ -316,6 +327,7 @@
 				660516F524CAEFFF004D36A0 /* PhotoSelectHeader.swift in Sources */,
 				66F4432C24C51DD200F86708 /* UserProfileHeader.swift in Sources */,
 				663C7EE124C2B11E005DD3C5 /* AppDelegate.swift in Sources */,
+				66FF13C024DA940F00048259 /* Enums.swift in Sources */,
 				66F4432924C4FEA100F86708 /* UserProfileController.swift in Sources */,
 				66461CB624C805C900D06384 /* SignInController.swift in Sources */,
 				665F41C524C536580057986D /* User.swift in Sources */,
